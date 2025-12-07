@@ -57,15 +57,14 @@ raw zone table build
 -- country table build
 
 -- todo: complete table build
-COPY INTO {{env}}_tasty_bytes.raw_pos.country
-(
-   country_id NUMBER(18,0),
-   country VARCHAR(16777216),
-   iso_currency VARCHAR(3),
-   iso_country VARCHAR(2),
-   city VARCHAR(16777216),
-   city_population VARCHAR(16777216),
-   city_id NUMBER(18,0)
+CREATE OR REPLACE TABLE STAGING_TASTY_BYTES.RAW_POS.COUNTRY (
+	COUNTRY_ID NUMBER(18,0),
+	COUNTRY VARCHAR(16777216),
+	ISO_CURRENCY VARCHAR(3),
+	ISO_COUNTRY VARCHAR(2),
+	CITY VARCHAR(16777216),
+	CITY_POPULATION VARCHAR(16777216),
+	CITY_ID NUMBER(19,0)
 );
 
 
