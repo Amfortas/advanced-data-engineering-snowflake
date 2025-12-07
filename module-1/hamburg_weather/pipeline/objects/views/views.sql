@@ -1,19 +1,3 @@
--- Create view that adds weather data for cities where Tasty Bytes operates
-CREATE OR REPLACE VIEW {{env}}_tasty_bytes.harmonized.daily_weather_v
-COMMENT = 'Weather Source Daily History filtered to Tasty Bytes supported Cities'
-    AS
-SELECT
-    hd.*,
-    TO_VARCHAR(hd.date_valid_std, 'YYYY-MM') AS yyyy_mm,
-    pc.city_name AS city,
-    c.country AS country_desc
-FROM FROSTYBYTE_WEATCHERSOURCE.onpoint_id.history_day hd
-JOIN FROSTYBYTE_WEATCHERSOURCE.onpoint_id.postal_codes pc
-    ON pc.postal_code = hd.postal_code
-    AND pc.country = hd.country
-JOIN {{env}}_tasty_bytes.raw_pos.country c
-    ON c.iso_country = hd.country
-    AND c.city = hd.city_name;
 
 -- Apply UDFs and confirm successful execution
 CREATE OR REPLACE VIEW {{env}}_tasty_bytes.harmonized.weather_hamburg
