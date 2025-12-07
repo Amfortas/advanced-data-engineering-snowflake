@@ -57,17 +57,15 @@ raw zone table build
 -- country table build
 
 -- todo: complete table build
-COPY INTO {{env}}_tasty_bytes.raw_pos.country
-(
-   country_id,
-   country,
-   iso_currency,
-   iso_country,
-   city_id,
-   city,
-   city_population
-)
-FROM @{{env}}_tasty_bytes.public.s3load/raw_pos/country/;
+CREATE OR REPLACE TABLE STAGING_TASTY_BYTES.RAW_POS.COUNTRY (
+	COUNTRY_ID NUMBER(18,0),
+	COUNTRY VARCHAR(16777216),
+	ISO_CURRENCY VARCHAR(3),
+	ISO_COUNTRY VARCHAR(2),
+	CITY VARCHAR(16777216),
+	CITY_POPULATION VARCHAR(16777216),
+	CITY_ID NUMBER(19,0)
+);
 
 
 -- franchise table build
